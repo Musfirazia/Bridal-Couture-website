@@ -1,0 +1,89 @@
+{% extends 'shoppage/basic.html' %}
+{% block title %} Login {% endblock %}
+{% block css %}
+<style>
+    label {
+        margin-top: 11px;
+    }
+
+    h1 {
+        margin-top: 35px;
+        font-style: italic;
+        text-transform: uppercase;
+    }
+
+    .col-lg-6 {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #sign {
+        margin-bottom: 30px;
+        margin-top: 10px;
+    }
+
+    .form-labels {
+        margin-top: 22px;
+    }
+    #signup{
+        margin-top:20px;
+        margin-bottom: 191px;
+    }
+   .btn-primary a{
+        color:white;
+    }
+</style>
+{% endblock %}
+{% block body %}
+{% if test %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  Please enter correct email or password
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
+<div class="container">
+    <form class="col-lg-6"onsubmit="setemail();" action="/signin/" method="post" id="signinForm">
+        <input type="hidden"  id="user" value={{user}}>
+        {% csrf_token %}
+        <h1 class="h3 mb-3">Please sign in</h1>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" name="email" class="form-control form-labels" placeholder="Email address"  autofocus>
+        <label for="inputPassword" class="sr-only" >Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control form-labels" placeholder="Password" >
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block"  type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" id="signup"><a href="/signup">Create Account</a></button>
+    </form>
+</div>
+{% endblock %}
+
+
+{% block js %}
+
+
+<script>
+   $(document).ready(function () {
+    // show the alert
+    setTimeout(function () {
+      $(".alert").alert('close');
+    }, 2000);
+  });
+
+    function setemail(){
+        email=document.getElementById('inputEmail').value;
+        console.log(email);
+
+        localStorage.setItem("email", email);
+    }
+
+</script>
+
+
+
+{% endblock %} 

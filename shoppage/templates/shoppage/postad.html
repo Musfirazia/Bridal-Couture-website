@@ -1,0 +1,203 @@
+{% extends 'shoppage/basic.html' %}
+{% block title %} Post Your Ad {% endblock %}
+{% block css %}
+<style>
+
+  #post {
+      left: 400px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      text-shadow: 2px 2px 3px #666666;
+      top: 10px;
+      font-family: Algerian, Georgia, Times, 'Times New Roman', serif;
+      font-size: 25px;
+      border: 5px inset #87142b;
+      margin-bottom: 10px;
+      margin-top:10px;
+  }
+  label{
+      color: #87142b;
+      font-size: 20px;
+      font-weight: bold;
+      font-style: italic;
+
+  }
+  body {
+      background-image: linear-gradient(linear, 0% 0%, 0% 100%, from(#66cccc), to(#336666));
+  }
+ #upload{
+     color: black;
+     font-size: medium;
+     font-weight: normal;
+     font-style: normal;
+ }
+
+ #postad{
+     margin-left: 720px;
+     margin-bottom: 30px;
+     background-color:  #87142b;
+ }
+</style>
+{% endblock %}
+{% block body %}
+<form method="POST" action="/postad/" id="postadd" enctype="multipart/form-data" onsubmit="check();">
+  {% csrf_token %}  
+  <div class="container">
+      <div class="row justify-content-md-center">
+          <h1 id="post">Post Your Ad</h1>
+      </div>
+
+      <div class="row justify-content-md-center">
+          <div class="col-lg-2">
+              <label class="my-4 mr-2" for="category">Category</label>
+          </div>
+          <div class="col-lg-6">
+              <select class="custom-select my-4 mr-sm-2" id="category" name="category">
+                  <option selected value="Bridal dress">Bridal dress</option>
+                  <option value="Fancy Dress">Fancy Dress</option>
+                  <option value="Party Dress">Party Dress</option>
+              </select>
+          </div>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-lg-2">
+            <label class="my-4 mr-2" for="vendor_name">Seller Name</label>
+        </div>
+        <div class="col-lg-6 my-4">
+          <input type="text" id="vendor_name" name="vendor_name" class="form-control">
+        </div>
+    </div>
+      <div class="row justify-content-md-center">
+          <div class="col-lg-2">
+              <label class="my-4 mr-2" for="dress_name">Dress Name</label>
+          </div>
+          <div class="col-lg-6 my-4">
+            <input type="text" id="dress_name" name="dress_name" class="form-control">
+          </div>
+      </div>
+      <div class="row justify-content-md-center">
+          <div class="col-lg-2">
+              <label class="my-4 mr-2" for="desc">Dress Desc</label>
+          </div>
+          <div class="col-lg-6 my-4">
+              <input type="text" id="desc" name="desc" required class="form-control">
+          </div>
+      </div>
+      <div class="row justify-content-md-center">
+          <div class="col-lg-2">
+              <label class="my-4 mr-2" for="material">Dress material</label>
+          </div>
+          <div class="col-lg-6 my-4">
+              <input type="text" id="material" name="material" class="form-control">
+          </div>
+      </div>
+      <div class="row justify-content-md-center">
+          <div class="col-lg-2">
+              <label class="my-4 mr-2" for="category">Colours</label>
+          </div>
+          <div class="col-lg-6 my-4">
+              <input type="text" id="colours" name="colours" class="form-control">
+
+          </div>
+      </div>
+      <div class="row justify-content-md-center">
+          <div class="col-lg-2">
+              <label class="my-4 mr-2" for="price">Price</label>
+          </div>
+          <div class="col-lg-6 my-4">
+              <input type="text" id="price" name="price" required class="form-control">
+          </div>
+      </div>
+      <div class="row justify-content-md-center">
+          <div class="col-lg-2">
+              <label class="my-4 mr-2" for="category">Size</label>
+          </div>
+          <div class="col-lg-6">
+              <select class="custom-select my-4 mr-sm-2" id="Size" name="size" multiple="multiple">
+                  <option selected value="X-Small">X-Small</option>
+                  <option value="Small">Small</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Large</option>
+              </select>
+          </div>
+
+      </div>
+      <div class="row justify-content-md-center">
+          <div class="col-lg-2">
+              <label class="my-4 mr-2" for="stichtype">Stitching Type</label>
+          </div>
+          <div class="col-lg-6 my-4 form-check form-check-inline">
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox"  name="stitching" value="stitch">
+                  <label class="form-check-label" for="stitch">Stitch</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" name="stitching"
+                      value="unstitch">
+                  <label class="form-check-label" for="unstitch">Un-stitch</label>
+              </div>
+          </div>
+      </div>
+      <div class="row justify-content-md-center">
+          <div class="col-lg-2">
+              <label class="my-4 mr-2" for="contact">Contact</label>
+          </div>
+          <div class="col-lg-6 my-4">
+              <input type="text" id="contact" required name="contact" class="form-control">
+          </div>
+      </div>
+      <div class="row justify-content-md-center">
+          <div class="col-lg-2">
+              <label class="my-4 mr-2" for="quantity">Quantity</label>
+          </div>
+          <div class="col-lg-6 my-4">
+              <input type="text" id="quantity" name="quantity" required class="form-control">
+          </div>
+      </div>
+      <div class="row justify-content-md-center">
+          <div class="input-group mb-3 col-lg-8">
+              <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="uploadfile" name="image">
+                  <label class="custom-file-label" for="inputGroupFile02" id="upload"
+                      aria-describedby="inputGroupFileAddon02">Add image to upload</label>
+              </div>
+              <div class="input-group-append ">
+                  <span class="input-group-text" id="upload" required  onclick="upload()">Upload</span>
+              </div>
+
+          </div>
+      </div>  
+  <button class="btn btn-primary col-lg-2" id="postad"  type="submit">Post Ad</button>
+</div>
+</form>  
+{% endblock %}
+{% block js %}
+<script>
+function upload(){
+path=document.getElementById('uploadfile').value;
+document.getElementById('upload').innerText=path;
+console.log(path); 
+}
+
+
+function check(){
+empt=document.forms["postadd"]["price"].value;
+quantity=document.forms["postadd"]["quantity"].value;
+image=document.forms["postadd"]["image"].value;
+contact=document.forms["postadd"]["contact"].value;
+dress_name=document.forms["postadd"]["dress_name"].value;
+material=document.forms["postadd"]["material"].value;
+
+if(empt == null || quantity == null || contact == null ||dress_name =="" || material =="")
+{
+    alert('please fill all fields');
+    return false;
+}
+else{
+    return true;
+}
+}
+</script>
+{% endblock %}
+

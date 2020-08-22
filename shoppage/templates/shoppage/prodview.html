@@ -1,0 +1,257 @@
+{% extends 'shoppage/basic.html' %}
+{% block title %}{{product.product_name}} View {% endblock %}
+{% block css %}
+<style>
+    .col-sm-6 {
+        width: 280px;
+        margin: auto;
+    }
+
+    body {
+        font-family: 'serif Times New Roman', Times, serif;
+        font-size: 20px;
+    }
+
+    #name {
+        text-transform: uppercase;
+        font-size: 22px;
+        margin-bottom: 30px;
+        font-weight: bolder;
+        text-shadow: 1px 1px 2px #666666;
+    }
+
+    .heading {
+        font-weight: bold;
+        font-size: 21px;
+        text-shadow: 1px 1px 2px #bdbaba;
+
+    }
+
+    .btn-primary {
+        background-color: #87142b;
+        border: black;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    #send {
+        width: 280px;
+        letter-spacing: 0.1em;
+    }
+
+    .col-sm-12 #send {
+        width: 240px;
+        align-content: center;
+
+    }
+
+    #formdiv {
+        background-color: #f1eced;
+        min-height: 520px;
+        float: left;
+
+    }
+
+    .col-lg-4 img{
+     width: 330px;
+        height: 501px;
+    }
+
+ /*displaying images*/
+    #myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: fixed;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bolder;
+  transition: 0.3s;
+}
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 500px){
+  .modal-content {
+    width: 200%;
+  }
+}
+
+</style>
+{% endblock %}
+{% block body %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-sm-6 col-md-5 col-lg-4">
+            <div class=row>
+                <img src="/media/{{product.image}}" id="myImg"  class="dressimages" width="233px"
+                    height="385px">
+                <div id="myModal" class="modal">
+
+                    <!-- The Close Button -->
+                    <span class="close">&times;</span>
+
+                    <!-- Modal Content (The Image) -->
+                    <img class="modal-content" id="img01">
+
+                    <!-- Modal Caption (Image Text) -->
+                    <div id="caption"></div>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn btn-primary mx-2 my-4">Buy Now</button>
+                <!-- <button class="btn btn-primary my-4 mx-2">Add To Cart</button> -->
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-6 col-lg-4">
+            <h2 id="name" name="dress_name">{{product.dress_name}}</h2>
+            <p><span class="heading">Dress Details: </span>{{product.desc}}</p>
+            <p id="material"><span class="heading"> Material: </span>{{product.material}}</p>
+            <p id="colours"> <span class="heading">Colours Available:</span> {{product.colours}}</p>
+            <p id="stitchingtype"><span class="heading">Stitching Type:</span> {{product.stitching}}</p>
+            <p id="size"><span class="heading">Sizes Available:</span> {{product.size}}</p>
+            <p id="quantity"><span class="heading">Quantity Available:</span> {{product.quantity}}</p>
+            <p id="Contact Details"><span class="heading">Contact Details:</span> {{product.contact}}</p>
+            <p class="heading"> Price:<b> Rs: {{product.price}}</b></p>
+        </div>
+        <div class="col-md-12 col-sm-12 col-lg-4" id="formdiv">
+            <form method="POST" id="quickform" enctype="multipart/form-data" class="quickform" action="">
+                {% csrf_token %}
+                <div class="form-row">
+                    <h2> Quick Form </h2>
+                </div>
+                <input type="hidden" name="dress_name" value="{{product.dress_name}}">
+                <input type="hidden" name="dress_id" value="{{product.dress_id}}">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="Name">Name</label>
+                        <input type="text" name="name" required class="form-control" id="Name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="Email">Email</label>
+                        <input type="email" name="email" required class="form-control" id="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Complete Address</label>
+                    <input type="text" name="address" required class="form-control" id="inputAddress"
+                        placeholder="1234 Main St">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Phone Number</label>
+                    <input type="text" name="number" required class="form-control" id="phonenumber"
+                        placeholder="Add your phone Number">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" name="city" required class="form-control" id="inputCity">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputState">State</label>
+                        <select id="inputState" name="state" required class="form-control">
+                            <option selected>Choose...</option>
+                            <option value="Pakistan">Pakistan</option>
+                            <option value="India">India</option>
+                            <option value="Bangladish">Bangladish</option>
+                            <option value="United States">United States</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputZip">Zip</label>
+                        <input type="text" name="zipcode" class="form-control" id="inputZip">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <button type="submit" onclick="alert('Thanks for contacting us');" class="btn btn-primary"
+                        id="send">SEND</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+  captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+</script>
+{% endblock %}

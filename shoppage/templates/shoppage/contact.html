@@ -1,0 +1,155 @@
+{% extends 'shoppage/basic.html' %}
+{% block title %} Contact Us {% endblock %}
+{% block css %}
+{% load static %}
+<style>
+    h1 {
+        font-family: serif;
+        text-align: center;
+        font-weight: bold
+    }
+
+    #submitbutton {
+        width: 268px;
+        font-size: large;
+    }
+
+    .tagline {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .contactdetails img {
+        width: 40px;
+        height: 50px;
+        margin-top: 19px;
+    }
+
+    .fliconwrap {
+        background-image: "{%static 'shoppage/shoplogo.png' %}"
+    }
+
+    .fl-icon img {
+        margin-right: 8px;
+        width: 48px;
+        height: 30px;
+        margin-top: 8px;
+
+    }
+
+    .contactdetails {
+        padding: 5px;
+        margin-left: -4px;
+
+    }
+
+    .contactdetails span {
+        vertical-align: -webkit-baseline-middle;
+        color: darkmagenta;
+        font-style: italic;
+        text-decoration: underline;
+    }
+
+    #emailid {
+        margin-left: -1px;
+    }
+    .contactpage {
+        float: left;
+        margin-top: 30px;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<form action="/contact/" method="post" id="contactForm">
+    {% csrf_token %}
+    <div class="container my-4">
+        <h1> CONTACT US</h1>
+        <p class="tagline">We can't solve your problem if you don't tell us about it</p>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Name</label>
+                    <input type="text" class="form-control" id="name" name='name' placeholder="Enter Your Name... ">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Email</label>
+                    <input type="email" class="form-control" id="email" name='email' placeholder="Enter Your Email... ">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Phone Number</label>
+                    <input type="text" class="form-control" id="phonenumber" name='number'
+                        placeholder="Enter Your Phone number... ">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">How may we help you</label>
+                    <textarea class="form-control" id="desc" name='desc' rows="3"></textarea>
+                </div>
+
+                <button id="submitbutton" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="contactpage col-lg-6 col-md-6 col-sm-6">
+                <div class="contactdetails" data-node="5ccc18cac8f1d">
+                    <div>
+                        <img src="{%static 'shoppage/shoplogo.png' %}">
+                        <a href="https://goo.gl/maps/QKce6P8xRcF2" target="_blank"
+                            class="fl-icon-text-link fl-icon-text-wrap" rel="noopener">
+                            <span>Tariq Road karachi</span>
+                        </a>
+                    </div>
+                    <div>
+                        <img src="{%static 'shoppage/phonelogo.png' %}">
+                        <a href="03158001475" target="_blank" class="fl-icon-text-link fl-icon-text-wrap"
+                            rel="noopener">
+                            <span>0315-8001475</span>
+                        </a>
+                    </div>
+                    <div>
+                        <img id="emaillogo" src="{%static 'shoppage/email.png' %}">
+                        <a id="emailid" href="mailto:musfirazia250@gmail.com" target="_blank" rel="noopener">
+                            <span id="emailid">musfirazia250@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <span class="fl-icon">
+
+                        <a href="https://www.facebook.com/groverweb" target="_blank"
+                            aria-label="link to https://www.facebook.com/groverweb" rel="noopener">
+                            <i class="fab fa-facebook-square" aria-hidden="true"></i>
+                            <img src="{%static 'shoppage/fb.png' %}" alt="facebooklogo">
+
+                        </a>
+                    </span>
+                    <span class="fl-icon">
+
+                        <a href="https://www.linkedin.com/company/grover-web-design" target="_blank"
+                            aria-label="link to https://www.linkedin.com/company/grover-web-design" rel="noopener">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                            <img src="{%static 'shoppage/linkedin.png' %}" alt="linkedinlogo">
+
+                        </a>
+                    </span>
+                    <span class="fl-icon">
+                        <a href="https://twitter.com/groverwebdesign" target="_blank"
+                            aria-label="linkto: https://twitter.com/groverwebdesign" rel="noopener">
+                            <i class="fab fa-twitter-square" aria-hidden="true"></i>
+                            <img src="{%static 'shoppage/twitter.png' %}" alt="twitterlogo">
+
+                        </a>
+                    </span>
+                    <span class="fl-icon">
+
+                        <a href="https://www.instagram.com/groverweb/" target="_blank"
+                            aria-label="link to https://www.instagram.com/groverweb/" rel="noopener">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                            <img src="{%static 'shoppage/instagram.png' %}" alt="twitterlogo">
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
+{% block js %}
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'shoppage/basic.html' %}
+{% block title %} About Us {% endblock %}
+{% block css %}
+<style>
+.btn-secondary{
+  background-color: #87142b;
+            border: 1px outset rgb(66, 64, 64);
+        
+}
+h2{
+  font-size: 2rem;
+    font-family: initial;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.col-md-4 p{
+    height: 101px;
+    margin-left: auto;
+    margin-right: auto;
+}
+body{
+  text-align: center;
+}
+
+</style>
+{% endblock %}
+{% block body %} <main role="main">
+<div class="container">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+          <div class="container">
+            <h1 class="display-3">Bridal Couture</h1>
+<p> Bridal Couture is a Pakistan online marketplace and logistics company which operates in South Asian markets.
+
+        It was founded in 2012 by a German venture capital company, Rocket Internet. It operates e-commerce platforms and logistics services in Pakistan, Bangladesh, Nepal, Sri Lanka, and Myanmar.
+      </p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+          </div>
+        </div>
+      
+        <div class="container">
+          <!-- Example row of columns -->
+          <div class="row">
+            <div class="col-md-4">
+              <h2 class="heading" >Wide Range of dresses</h2>
+              <p>We've rounded up some of our favorite wedding retailers to make it easier for you to
+                find your dream gown.</p>
+              <p><a class="btn btn-secondary" href="{% url 'ShopHome' %}" role="button">View Dresses &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+              <h2 class="heading">Affordable Place</h2>
+              <p class="para">Finding an affordable wedding dress under $1,000 doesn't have to be a
+                challenge, so It
+                is the
+                best place to snag the dress of your dreams for less.</p>
+              <p><a class="btn dresses btn-secondary" href="/category/bridaldress" role="button">View Bridal Dresses &raquo;</a></p>
+            </div>
+            <div class=" col-md-4">
+              <h2 class="heading">Customize Dresses</h2>
+              <p >Customize your dress according to your size and material we work on shiffon,silk and
+                much more choice is yours.</p>
+              <p><a class="btn dresses btn-secondary" href="/category/fancydresss" role="button">View Dresses &raquo;</a></p>
+            </div>
+          </div>
+      
+          <hr>
+      
+        </div> <!-- /container -->
+      </div>
+      </main>
+  {% endblock %}
